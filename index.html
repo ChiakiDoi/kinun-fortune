@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金運AI鑑定 | バイオリズム × 五行 × 木星トランジット【無料】</title>
+
+<!-- SEO基本 -->
+<meta name="description" content="生年月日を入れるだけ！西洋占星術・五行・バイオリズムをAIが組み合わせて金運を無料鑑定。木星トランジットで今あなたの金運ピーク日がわかります。">
+<meta name="keywords" content="金運占い,金運 無料,バイオリズム 金運,五行 占い,木星トランジット,AI占い,生年月日 金運">
+<meta name="author" content="金運AI鑑定">
+<link rel="canonical" href="https://wondrous-bonbon-88d8c6.netlify.app/">
+
+<!-- OGP（SNSシェア用） -->
+<meta property="og:title" content="金運AI鑑定 | 生年月日だけで金運を無料診断">
+<meta property="og:description" content="西洋占星術・五行・バイオリズムをAIが分析。あなたの金運ピーク日を今すぐ無料で鑑定します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wondrous-bonbon-88d8c6.netlify.app/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="金運AI鑑定">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="金運AI鑑定 | 生年月日だけで金運を無料診断">
+<meta name="twitter:description" content="西洋占星術・五行・バイオリズムをAIが分析。あなたの金運ピーク日を今すぐ無料で鑑定します。">
+
+<!-- 構造化データ（Schema.org） -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "金運AI鑑定",
+  "url": "https://wondrous-bonbon-88d8c6.netlify.app/",
+  "description": "生年月日を入れるだけ！西洋占星術・五行・バイオリズムをAIが組み合わせて金運を無料鑑定。",
+  "applicationCategory": "LifestyleApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "inLanguage": "ja",
+  "keywords": "金運占い,バイオリズム,五行,木星トランジット,AI占い"
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Cinzel:wght@400;700&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D080;
+    --gold-dark: #8B6914;
+    --deep: #0A0A0F;
+    --surface: #12121A;
+    --surface2: #1C1C28;
+    --text: #E8E0CC;
+    --text-dim: #8A7F6A;
+    --accent: #4A3F8A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--deep);
+    color: var(--text);
+    font-family: 'Noto Sans JP', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* 星空背景 */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(74,63,138,0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(201,168,76,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(10,10,15,1) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--d, 3s) ease-in-out infinite;
+    opacity: var(--o, 0.5);
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: var(--o); transform: scale(1); }
+    50% { opacity: calc(var(--o) * 0.3); transform: scale(0.8); }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* ヘッダー */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .header-symbol {
+    font-size: 48px;
+    margin-bottom: 12px;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(22px, 5vw, 32px);
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-dark), transparent);
+  }
+
+  .divider-diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  /* 入力フォーム */
+  .form-card {
+    background: var(--surface);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(201,168,76,0.1);
+  }
+
+  .form-label {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-group label {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+    letter-spacing: 0.1em;
+  }
+
+  input[type="number"], select {
+    background: var(--surface2);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 8px;
+    color: var(--text);
+    padding: 10px 12px;
+    font-size: 15px;
+    font-family: 'Noto Sans JP', sans-serif;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+    -moz-appearance: textfield;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+  input:focus, select:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+  }
+
+  .btn-fortune {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+    border: none;
+    border-radius: 10px;
+    color: #0A0A0F;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+  }
+
+  .btn-fortune:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201,168,76,0.4);
+  }
+
+  .btn-fortune:active { transform: translateY(0); }
+  .btn-fortune:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  /* ローディング */
+  .loading {
+    display: none;
+    text-align: center;
+    padding: 48px 0;
+  }
+
+  .loading.show { display: block; }
+
+  .oracle-spinner {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    position: relative;
+  }
+
+  .oracle-spinner::before, .oracle-spinner::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid transparent;
+  }
+
+  .oracle-spinner::before {
+    inset: 0;
+    border-top-color: var(--gold);
+    animation: spin 1.2s linear infinite;
+  }
+
+  .oracle-spinner::after {
+    inset: 8px;
+    border-top-color: rgba(201,168,76,0.4);
+    animation: spin 0.8s linear infinite reverse;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .loading-text {
+    font-family: 'Noto Serif JP', serif;
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  /* 結果 */
+  .result-section {
+    display: none;
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .result-section.show { display: block; }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* スコアメーター */
+  .score-card {
+    background: var(--surface);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .score-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .score-label {
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.3em;
+    font-family: 'Cinzel', serif;
+    margin-bottom: 16px;
+  }
+
+  .score-number {
+    font-family: 'Cinzel', serif;
+    font-size: 80px;
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .score-unit { font-size: 20px; }
+
+  .score-bar-wrap {
+    height: 6px;
+    background: var(--surface2);
+    border-radius: 3px;
+    margin: 16px 0;
+    overflow: hidden;
+  }
+
+  .score-bar {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(to right, var(--gold-dark), var(--gold-light));
+    transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    width: 0;
+  }
+
+  .score-rank {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+  }
+
+  /* 各要素カード */
+  .elements-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .element-card {
+    background: var(--surface);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+
+  .element-icon { font-size: 24px; margin-bottom: 8px; }
+
+  .element-name {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    margin-bottom: 6px;
+  }
+
+  .element-score {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    color: var(--gold-light);
+  }
+
+  .element-bar-wrap {
+    height: 3px;
+    background: var(--surface2);
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+
+  .element-bar {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    width: 0;
+  }
+
+  /* バイオリズムグラフ */
+  .bio-card {
+    background: var(--surface);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  .bio-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  canvas#bioChart {
+    width: 100% !important;
+    height: 160px !important;
+  }
+
+  .bio-legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .bio-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  .bio-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  /* AIコメント */
+  .ai-comment-card {
+    background: var(--surface);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .ai-comment-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .ai-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.3em;
+    font-family: 'Cinzel', serif;
+    margin-bottom: 14px;
+  }
+
+  .ai-text {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    line-height: 2;
+    color: var(--text);
+  }
+
+  /* ピーク期間 */
+  .peak-card {
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(74,63,138,0.1));
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+
+  .peak-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+  }
+
+  .peak-dates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .peak-item {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 12px;
+  }
+
+  .peak-item-label {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    margin-bottom: 4px;
+  }
+
+  .peak-item-date {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14px;
+    color: var(--gold-light);
+  }
+
+  /* CTA */
+  .cta-card {
+    background: linear-gradient(135deg, var(--surface), rgba(74,63,138,0.2));
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .cta-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .btn-cta {
+    display: inline-block;
+    padding: 14px 32px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    color: var(--gold-light);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .btn-cta:hover {
+    background: rgba(201,168,76,0.1);
+    box-shadow: 0 0 20px rgba(201,168,76,0.2);
+  }
+
+  /* エラー */
+  .error-msg {
+    color: #E88;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 12px;
+    display: none;
+  }
+  .error-msg.show { display: block; }
+
+  @media (max-width: 480px) {
+    .form-row { grid-template-columns: 1fr 1fr 1fr; }
+    .elements-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .score-number { font-size: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="container">
+  <header>
+    <div class="header-symbol">☯</div>
+    <h1>金運AI鑑定</h1>
+    <p class="subtitle">Biorhythm × Wu Xing × Jupiter Transit</p>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+    <p style="font-size:13px;color:var(--text-dim);line-height:1.8;">西洋占星術・五行・バイオリズムを組み合わせた<br>本格AI金運鑑定</p>
+  </header>
+
+  <div class="form-card">
+    <span class="form-label">✦ 生年月日を入力してください</span>
+    <div class="form-row">
+      <div class="input-group">
+        <label>年</label>
+        <input type="number" id="year" placeholder="1990" min="1900" max="2010">
+      </div>
+      <div class="input-group">
+        <label>月</label>
+        <input type="number" id="month" placeholder="1" min="1" max="12">
+      </div>
+      <div class="input-group">
+        <label>日</label>
+        <input type="number" id="day" placeholder="1" min="1" max="31">
+      </div>
+    </div>
+    <button class="btn-fortune" id="btn" onclick="startFortune()">✦ 金運を鑑定する ✦</button>
+    <div class="error-msg" id="error">生年月日を正しく入力してください</div>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="oracle-spinner"></div>
+    <div class="loading-text" id="loadingText">天体の運行を読み取っています…</div>
+  </div>
+
+  <div class="result-section" id="result">
+
+    <div class="score-card">
+      <div class="score-label">FORTUNE SCORE</div>
+      <div class="score-number" id="scoreNum">0<span class="score-unit"></span></div>
+      <div class="score-bar-wrap"><div class="score-bar" id="scoreBar"></div></div>
+      <div class="score-rank" id="scoreRank"></div>
+    </div>
+
+    <div class="elements-grid">
+      <div class="element-card">
+        <div class="element-icon">🪐</div>
+        <div class="element-name">木星トランジット</div>
+        <div class="element-score" id="jupiterScore">-</div>
+        <div class="element-bar-wrap"><div class="element-bar" id="jupiterBar" style="background:linear-gradient(to right,#6B5CF6,#9B8BF6)"></div></div>
+      </div>
+      <div class="element-card">
+        <div class="element-icon">☯</div>
+        <div class="element-name">五行スコア</div>
+        <div class="element-score" id="wuxingScore">-</div>
+        <div class="element-bar-wrap"><div class="element-bar" id="wuxingBar" style="background:linear-gradient(to right,#2E7D32,#66BB6A)"></div></div>
+      </div>
+      <div class="element-card">
+        <div class="element-icon">📈</div>
+        <div class="element-name">バイオリズム</div>
+        <div class="element-score" id="bioScore">-</div>
+        <div class="element-bar-wrap"><div class="element-bar" id="bioBar" style="background:linear-gradient(to right,#B8860B,#F0D080)"></div></div>
+      </div>
+    </div>
+
+    <div class="bio-card">
+      <div class="bio-title">📊 バイオリズムグラフ（過去7日〜今後14日）</div>
+      <canvas id="bioChart"></canvas>
+      <div class="bio-legend">
+        <div class="bio-legend-item"><div class="bio-dot" style="background:#E57373"></div>身体（23日）</div>
+        <div class="bio-legend-item"><div class="bio-dot" style="background:#64B5F6"></div>感情（28日）</div>
+        <div class="bio-legend-item"><div class="bio-dot" style="background:#81C784"></div>知性（33日）</div>
+      </div>
+    </div>
+
+    <div class="peak-card">
+      <div class="peak-title">✦ 今後の金運ピーク期間</div>
+      <div class="peak-dates" id="peakDates"></div>
+    </div>
+
+    <div class="ai-comment-card">
+      <div class="ai-label">AI ORACLE READING</div>
+      <div class="ai-text" id="aiText">読み取り中…</div>
+    </div>
+
+    <div class="cta-card">
+      <div class="cta-title">✦ さらに詳しい鑑定をご希望の方へ</div>
+      <div class="cta-desc">
+        AI鑑定に加え、占師による個別リーディングで<br>
+        あなただけの金運開運アドバイスをお届けします。
+      </div>
+      <a class="btn-cta" href="https://coconala.com/services/4168772" target="_blank">ココナラで詳細鑑定を見る →</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// 星を生成
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 120; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const size = Math.random() * 2.5 + 0.5;
+  s.style.cssText = `
+    width:${size}px;height:${size}px;
+    left:${Math.random()*100}%;top:${Math.random()*100}%;
+    --d:${2+Math.random()*4}s;--o:${0.2+Math.random()*0.6};
+    animation-delay:${Math.random()*4}s
+  `;
+  starsEl.appendChild(s);
+}
+
+// 定数
+const LOADING_MSGS = [
+  '天体の運行を読み取っています…',
+  '五行のバランスを分析中…',
+  '木星のトランジットを計算中…',
+  'バイオリズムを合成しています…',
+  'AIが鑑定結果を生成中…'
+];
+
+// 木星が通過中の星座（2026年は牡牛座→双子座）
+const JUPITER_SIGN_2026 = '双子座';
+const ZODIAC_SIGNS = [
+  {name:'山羊座',start:[1,1],end:[1,19],element:'土',jupiterAffinity:0.7},
+  {name:'水瓶座',start:[1,20],end:[2,18],element:'風',jupiterAffinity:0.75},
+  {name:'魚座',start:[2,19],end:[3,20],element:'水',jupiterAffinity:0.9},
+  {name:'牡羊座',start:[3,21],end:[4,19],element:'火',jupiterAffinity:0.85},
+  {name:'牡牛座',start:[4,20],end:[5,20],element:'土',jupiterAffinity:0.95},
+  {name:'双子座',start:[5,21],end:[6,21],element:'風',jupiterAffinity:1.0},
+  {name:'蟹座',start:[6,22],end:[7,22],element:'水',jupiterAffinity:0.7},
+  {name:'獅子座',start:[7,23],end:[8,22],element:'火',jupiterAffinity:0.8},
+  {name:'乙女座',start:[8,23],end:[9,22],element:'土',jupiterAffinity:0.65},
+  {name:'天秤座',start:[9,23],end:[10,23],element:'風',jupiterAffinity:0.75},
+  {name:'蠍座',start:[10,24],end:[11,21],element:'水',jupiterAffinity:0.7},
+  {name:'射手座',start:[11,22],end:[12,31],element:'火',jupiterAffinity:0.9},
+];
+
+// 五行スコア表
+const WUXING_YEAR_MAP = {
+  '木': 0.9, '火': 0.85, '土': 0.75, '金': 1.0, '水': 0.8
+};
+
+function getZodiac(month, day) {
+  for (const z of ZODIAC_SIGNS) {
+    const [sm, sd] = z.start;
+    const [em, ed] = z.end;
+    if ((month === sm && day >= sd) || (month === em && day <= ed)) return z;
+  }
+  return ZODIAC_SIGNS[0];
+}
+
+function getWuxingElement(year) {
+  const stem = ((year - 4) % 10 + 10) % 10;
+  const elements = ['木','木','火','火','土','土','金','金','水','水'];
+  return elements[stem];
+}
+
+function getBiorhythm(birthDate, targetDate) {
+  const msPerDay = 86400000;
+  const days = Math.floor((targetDate - birthDate) / msPerDay);
+  return {
+    physical: Math.sin(2 * Math.PI * days / 23),
+    emotional: Math.sin(2 * Math.PI * days / 28),
+    intellectual: Math.sin(2 * Math.PI * days / 33),
+    days
+  };
+}
+
+function calcScore(jupiterAffinity, wuxingElement, bioToday) {
+  const jupiterScore = Math.round(jupiterAffinity * 100);
+
+  const wuxingBase = WUXING_YEAR_MAP[wuxingElement] || 0.8;
+  const wuxingScore = Math.round(wuxingBase * 100);
+
+  // バイオリズムスコア（感情×0.4 + 知性×0.35 + 身体×0.25）
+  const bioVal = bioToday.emotional * 0.4 + bioToday.intellectual * 0.35 + bioToday.physical * 0.25;
+  const bioScore = Math.round((bioVal + 1) / 2 * 100);
+
+  // 総合スコア（重み付き平均）
+  const total = Math.round(jupiterScore * 0.35 + wuxingScore * 0.30 + bioScore * 0.35);
+
+  return { jupiterScore, wuxingScore, bioScore, total };
+}
+
+function getScoreRank(score) {
+  if (score >= 88) return '✦✦✦ 大吉 — 金運最高潮 ✦✦✦';
+  if (score >= 75) return '✦✦ 吉 — 金運上昇中 ✦✦';
+  if (score >= 62) return '✦ 中吉 — 安定した運気 ✦';
+  if (score >= 50) return '小吉 — 慎重に動くべき時';
+  return '末吉 — 種を蒔く時期';
+}
+
+function getPeakDates(birthDate) {
+  const today = new Date();
+  const peaks = [];
+  for (let i = 1; i <= 60; i++) {
+    const d = new Date(today.getTime() + i * 86400000);
+    const bio = getBiorhythm(birthDate, d);
+    const val = bio.emotional * 0.4 + bio.intellectual * 0.35 + bio.physical * 0.25;
+    if (val > 0.7) peaks.push({ date: d, val });
+  }
+  peaks.sort((a, b) => b.val - a.val);
+  return peaks.slice(0, 4);
+}
+
+function drawBioChart(birthDate) {
+  const canvas = document.getElementById('bioChart');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.offsetWidth;
+  const H = 160;
+  canvas.width = W * window.devicePixelRatio;
+  canvas.height = H * window.devicePixelRatio;
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+  const today = new Date();
+  const days = [];
+  for (let i = -7; i <= 14; i++) {
+    const d = new Date(today.getTime() + i * 86400000);
+    days.push({ offset: i, bio: getBiorhythm(birthDate, d) });
+  }
+
+  const N = days.length;
+  const padX = 8, padY = 16;
+  const chartW = W - padX * 2;
+  const chartH = H - padY * 2;
+  const midY = padY + chartH / 2;
+
+  // グリッド
+  ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+  ctx.lineWidth = 1;
+  for (let r = 0; r <= 4; r++) {
+    const y = padY + (chartH / 4) * r;
+    ctx.beginPath(); ctx.moveTo(padX, y); ctx.lineTo(W - padX, y); ctx.stroke();
+  }
+
+  // 今日の縦線
+  const todayX = padX + (7 / (N - 1)) * chartW;
+  ctx.strokeStyle = 'rgba(201,168,76,0.4)';
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.moveTo(todayX, padY); ctx.lineTo(todayX, H - padY); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = 'rgba(201,168,76,0.7)';
+  ctx.font = '10px Cinzel';
+  ctx.fillText('TODAY', todayX - 20, padY + 10);
+
+  // 折れ線を描く
+  function drawLine(key, color) {
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+    days.forEach((d, i) => {
+      const x = padX + (i / (N - 1)) * chartW;
+      const y = midY - d.bio[key] * (chartH / 2 - 4);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+  }
+
+  drawLine('physical', '#E57373');
+  drawLine('emotional', '#64B5F6');
+  drawLine('intellectual', '#81C784');
+}
+
+async function generateAIComment(zodiac, wuxingEl, scores, peakDates) {
+  const peakStr = peakDates.length > 0
+    ? peakDates.slice(0, 2).map(p => `${p.date.getMonth()+1}月${p.date.getDate()}日`).join('・')
+    : '来月以降';
+
+  const prompt = `あなたは西洋占星術・五行・バイオリズムを組み合わせた金運占い師AIです。
+以下のデータを元に、金運鑑定コメントを日本語で200字程度で書いてください。
+占いらしい神秘的で詩的な文体で、具体的な行動アドバイスも含めてください。
+
+- 太陽星座: ${zodiac.name}（${zodiac.element}のエレメント）
+- 五行本命: ${wuxingEl}
+- 木星トランジット: ${JUPITER_SIGN_2026}通過中（木星との相性スコア: ${scores.jupiterScore}/100）
+- バイオリズム総合スコア: ${scores.bioScore}/100
+- 総合金運スコア: ${scores.total}/100
+- 金運ピーク予想日: ${peakStr}
+
+コメントのみを返してください。余計な説明は不要です。`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    return data.content?.[0]?.text || '鑑定結果を取得できませんでした。';
+  } catch (e) {
+    return '星々の声を聴きながら、あなたの金運の波が高まっています。今こそ積極的に動く時です。';
+  }
+}
+
+async function startFortune() {
+  const year = parseInt(document.getElementById('year').value);
+  const month = parseInt(document.getElementById('month').value);
+  const day = parseInt(document.getElementById('day').value);
+  const err = document.getElementById('error');
+
+  if (!year || !month || !day || year < 1900 || year > 2010 || month < 1 || month > 12 || day < 1 || day > 31) {
+    err.classList.add('show');
+    return;
+  }
+  err.classList.remove('show');
+
+  const birthDate = new Date(year, month - 1, day);
+  if (isNaN(birthDate.getTime())) { err.classList.add('show'); return; }
+
+  // UI
+  document.getElementById('btn').disabled = true;
+  document.getElementById('result').classList.remove('show');
+  const loading = document.getElementById('loading');
+  loading.classList.add('show');
+
+  // ローディングメッセージを順に表示
+  let msgIdx = 0;
+  const msgEl = document.getElementById('loadingText');
+  const msgInterval = setInterval(() => {
+    msgIdx = (msgIdx + 1) % LOADING_MSGS.length;
+    msgEl.textContent = LOADING_MSGS[msgIdx];
+  }, 1000);
+
+  const today = new Date();
+  const zodiac = getZodiac(month, day);
+  const wuxingEl = getWuxingElement(year);
+  const bioToday = getBiorhythm(birthDate, today);
+  const scores = calcScore(zodiac.jupiterAffinity, wuxingEl, bioToday);
+  const peaks = getPeakDates(birthDate);
+
+  // AIコメント生成（並行）
+  const aiTextPromise = generateAIComment(zodiac, wuxingEl, scores, peaks);
+
+  // スコアをセット
+  const aiText = await aiTextPromise;
+
+  clearInterval(msgInterval);
+  loading.classList.remove('show');
+
+  // 結果表示
+  document.getElementById('result').classList.add('show');
+
+  // スコアアニメーション
+  let current = 0;
+  const target = scores.total;
+  const numEl = document.getElementById('scoreNum');
+  const timer = setInterval(() => {
+    current = Math.min(current + 2, target);
+    numEl.textContent = current;
+    if (current >= target) clearInterval(timer);
+  }, 20);
+
+  setTimeout(() => {
+    document.getElementById('scoreBar').style.width = scores.total + '%';
+  }, 100);
+
+  document.getElementById('scoreRank').textContent = getScoreRank(scores.total);
+
+  // 各要素
+  setTimeout(() => {
+    document.getElementById('jupiterScore').textContent = scores.jupiterScore;
+    document.getElementById('wuxingScore').textContent = scores.wuxingScore;
+    document.getElementById('bioScore').textContent = scores.bioScore;
+    document.getElementById('jupiterBar').style.width = scores.jupiterScore + '%';
+    document.getElementById('wuxingBar').style.width = scores.wuxingScore + '%';
+    document.getElementById('bioBar').style.width = scores.bioScore + '%';
+  }, 300);
+
+  // バイオリズムグラフ
+  setTimeout(() => drawBioChart(birthDate), 400);
+
+  // ピーク期間
+  const peakEl = document.getElementById('peakDates');
+  peakEl.innerHTML = '';
+  peaks.slice(0, 4).forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = 'peak-item';
+    div.innerHTML = `
+      <div class="peak-item-label">金運ピーク ${i+1}</div>
+      <div class="peak-item-date">${p.date.getMonth()+1}月${p.date.getDate()}日（${['日','月','火','水','木','金','土'][p.date.getDay()]}）</div>
+    `;
+    peakEl.appendChild(div);
+  });
+
+  // AIコメント
+  document.getElementById('aiText').textContent = aiText;
+
+  document.getElementById('btn').disabled = false;
+}
+</script>
+</body>
+</html>
